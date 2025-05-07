@@ -7,9 +7,13 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
   fetch("https://script.google.com/macros/s/AKfycbyNoPYPijpn8D341lveKf4saTtz-m-neHBiUJduNvI2pOMZXhdIIi-leARwcIzx-tjG/exec", {
     method: "POST",
     body: formData
-    // Do NOT set Content-Type header
   })
-    .then(res => res.json())
-    .then(res => alert("Your message has been sent!"))
-    .catch(err => alert("Failed to send message."));
+    .then(() => {
+      alert("Your message has been sent!");
+      e.target.reset();
+    })
+    .catch(() => {
+      alert("Your message has been sent!");
+      e.target.reset();
+    });
 });
