@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book a Desk | Aliance Space</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="fade-in-down">
+    <div class="header-content">
+      <h1>Book Your Desk</h1>
+      <p>Reserve your spot at Aliance Space and join our vibrant community!</p>
+      <a href="index.html" class="btn">Back to Home</a>
+    </div>
+  </header>
+  <main>
+    <section class="booking-section fade-in-up">
+      <div class="booking-card">
+        <h2>Reservation Form</h2>
+        <form id="booking-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" name="name" id="name" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" name="email" id="email" placeholder="Your Email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phone" id="phone" placeholder="Phone Number" required />
+          </div>
+          <div class="form-group">
+            <label for="date">Booking Date</label>
+            <input type="date" name="date" id="date" required />
+          </div>
+          <div class="form-group">
+            <label for="location">Preferred Location</label>
+            <select name="location" id="location" required>
+              <option value="" disabled selected>Select a location</option>
+              <option value="Najafgarh">Najafgarh</option>
+              <option value="Dwarka">Dwarka</option>
+            </select>
+          </div>
+          <button type="submit" class="btn">Submit Booking</button>
+        </form>
+        <div id="booking-success" class="booking-message"></div>
+      </div>
+      <div class="booking-visual fade-in">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=500&q=80" alt="Workspace" />
+        <p class="booking-note">We offer flexible seating, high-speed Wi-Fi, and a creative environment for all!</p>
+      </div>
+    </section>
+  </main>
+  <footer class="fade-in">
+    <p>© 2025 Aliance Space. All rights reserved.</p>
+  </footer>
+  <script src="booking.js"></script>
+  <script>
+    // Animate on scroll
+    const faders = document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-down');
+    const appearOptions = { threshold: 0.15 };
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('appear');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+    faders.forEach(fader => appearOnScroll.observe(fader));
+
+    // Booking success message animation
+    document.getElementById("booking-form").addEventListener("submit", function(e) {
+      setTimeout(() => {
+        const msg = document.getElementById("booking-success");
+        msg.textContent = "Thank you! Your booking has been received.";
+        msg.classList.add("show");
+        setTimeout(() => msg.classList.remove("show"), 4000);
+      }, 500);
+    });
+  </script>
+</body>
+</html>
